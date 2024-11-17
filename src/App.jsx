@@ -11,10 +11,15 @@ const App = () => {
   useEffect(() => {
     console.log("effect");
     axios.get("http://localhost:3001/notes").then((response) => {
+      const notes = response.data.map((note) => ({
+        ...note,
+        id: Number(note.id), // Convertir id a número
+      }));
       console.log("promise fulfilled");
-      setNotes(response.data);
+      setNotes(notes);
     });
   }, []);
+
 
   const addNote = (e) => {
     e.preventDefault();
