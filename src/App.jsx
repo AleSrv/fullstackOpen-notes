@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import Note from "./components/Note";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
@@ -44,14 +45,11 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
-      {notesToShow.map((note) => (
-        <div key={note.id}>
-          <p>
-            <span>{note.id} - </span>
-            {note.content} : {String(note.important)}
-          </p>
-        </div>
-      ))}
+      <ul>
+        {notesToShow.map((note) => (
+          <Note key={note.id} note={note} />
+        ))}
+      </ul>
       <button onClick={() => setShowAll(!showAll)}>
         {showAll ? "Show Important" : "Show All"}
       </button>
