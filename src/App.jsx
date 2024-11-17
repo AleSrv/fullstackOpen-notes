@@ -8,19 +8,21 @@ const App = () => {
   const [showAll, setShowAll] = useState(true);
 
   useEffect(() => {
-    console.log('effect')
-
-    const eventHandler = response => {
-      console.log('promise fulfilled')
-      setNotes(response.data)
-    }
-
-    const promise = axios.get('http://localhost:3001/notes')
-    promise.then(eventHandler)
-  }, [])
+    console.log("effect");
+    axios.get("http://localhost:3001/notes").then((response) => {
+      console.log("promise fulfilled");
+      setNotes(response.data);
+    });
+  }, []);
 
   const addNote = (e) => {
     e.preventDefault();
+
+    if (newNote.trim() === "") { // Validación de texto vacío o solo espacios
+      alert("No se puede agregar una nota vacía.");
+      return;
+    }
+
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5, // 50% de probabilidad de que sea true o false
