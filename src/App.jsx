@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import Note from "./components/Note";
 
 const App = () => {
+  //notes = todas las notas
   const [notes, setNotes] = useState([]);
+  //newNote = nueva nota
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
 
@@ -32,16 +34,32 @@ const App = () => {
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5, // 50% de probabilidad de que sea true o false
-      id: notes.length + 1, // Generar id secuencial
+      id: notes.length > 0
+        ? Math.max(...notes.map(note => note.id)) + 1 // Encontrar el máximo id y sumar 1
+        : 1 // Si la lista está vacía, asignar id 1
     };
 
-    setNotes(notes.concat(noteObject));
-    setNewNote("");
+    axios
+      .post('http://localhost:3001/notes', noteObject)
+      .then(response => {
+        setNotes(notes.concat(response.data))
+        // setNotes([...notes, response.data]); con Spread operator
+        setNewNote('')
+      })
   };
 
+  //cambio input
   const handleChange = (e) => {
     setNewNote(e.target.value);
   };
+
+  //CAMBIAR IMPORTANCIA MOTE
+  const toggleImportanceOf = (id) => {
+    setNotes(notes.map(note =>
+      note.id === id ? { ...note, important: !note.important } : note
+    ));
+  };
+
 
   const notesToShow = showAll
     ? notes
@@ -52,7 +70,7 @@ const App = () => {
       <h1>Notes</h1>
       <ul>
         {notesToShow.map((note) => (
-          <Note key={note.id} note={note} />
+          <Note key={note.id} note={note} toggleImportance={() => toggleImportanceOf(note.id)} />
         ))}
       </ul>
       <button onClick={() => setShowAll(!showAll)}>
