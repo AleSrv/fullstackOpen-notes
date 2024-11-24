@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "server": "json-server -p3001 --watch db.json"
-  },
+ "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "server": "json-server -p3001 --watch db.json",
+  "start": "start /b json-server -p3001 --watch db.json && vite"
+},
   "dependencies": {
     "axios": "^1.7.7",
     "prop-types": "^15.8.1",
