@@ -44,6 +44,7 @@ const App = () => {
     axios
       .post('http://localhost:3001/notes', noteObject)
       .then(response => {
+        console.log(response.data);
         setNotes(notes.concat(response.data))
         // setNotes([...notes, response.data]); con Spread operator
         setNewNote('')

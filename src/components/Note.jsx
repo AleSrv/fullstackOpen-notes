@@ -13,7 +13,6 @@ const Note = ({ note, toggleImportance }) => {
             <span style={{ color: note.important ? 'green' : 'red' }}>
                 {note.important ? '✔️ Important' : '❌ Not important'}
             </span>
-
         </li>
     );
 };
