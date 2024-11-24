@@ -16,8 +16,13 @@
       "important": true
     },
     {
-      "id": 4,
+      "id": "4",
       "content": "nota 4",
+      "important": true
+    },
+    {
+      "id": 5,
+      "content": "nota 5",
       "important": true
     }
   ]

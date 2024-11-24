@@ -1,4 +1,5 @@
 //src\components\Note.jsx
+
 import PropTypes from 'prop-types';
 
 const Note = ({ note, toggleImportance }) => {
