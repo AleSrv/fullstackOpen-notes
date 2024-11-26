@@ -20,12 +20,11 @@ const Note = ({ note, toggleImportance }) => {
 
 Note.propTypes = {
     note: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired, // Cambiar a string
         content: PropTypes.string.isRequired,
         important: PropTypes.bool.isRequired,
     }).isRequired,
     toggleImportance: PropTypes.func.isRequired,
 };
 
-
-export default Note
+export default Note;
