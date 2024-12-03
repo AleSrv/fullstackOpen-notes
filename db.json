@@ -18,7 +18,7 @@
     {
       "id": "4",
       "content": "nota 4",
-      "important": true
+      "important": false
     },
     {
       "id": "5",
@@ -28,7 +28,7 @@
     {
       "id": "6",
       "content": "nota 6",
-      "important": false
+      "important": true
     }
   ]
 }
